@@ -15,9 +15,9 @@ The icon sets are temporarily stored on the user's system to facilitate future i
 Installation should be done per project, using npm or yarn:
 
 ```sh
-npm install svg-icons
+npm install @raulduartep/svg-icons
 # or
-yarn add svg-icons
+yarn add @raulduartep/svg-icons
 ```
 
 After installation, you need to create a svg-icons.config.json file in the root directory of your project with the following content:
