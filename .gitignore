@@ -1,0 +1,5 @@
+node_modules/
+icons/*/
+dist/
+assets/
+svg-icons.config.json

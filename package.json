@@ -1,0 +1,43 @@
+{
+  "name": "svg-icons",
+  "version": "1.0.0",
+  "author": "Raul Duarte Pereira (https://github.com/raulduartep)",
+  "license": "MIT",
+  "description": "A lightweight CLI tool for downloading SVG icons, reducing bundle size by avoiding full icon set imports.",
+  "type": "module",
+  "main": "dist/main.js",
+  "files": [
+    "dist"
+  ],
+  "bin": {
+    "svg-icons": "dist/main.js"
+  },
+  "scripts": {
+    "dev": "tsx src/main.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "change-case": "^5.4.4",
+    "fast-fuzzy": "^1.12.0",
+    "find-up": "^7.0.0",
+    "glob": "^11.0.0",
+    "inquirer": "^12.3.0",
+    "inquirer-select-pro": "^1.0.0-alpha.9",
+    "ora": "^8.1.1",
+    "svgo": "^3.3.2",
+    "tsx": "^4.19.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@tsconfig/node20": "^20.1.4",
+    "@types/progress": "^2.0.7",
+    "eslint": "^9.17.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "globals": "^15.14.0",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.2"
+  }
+}
