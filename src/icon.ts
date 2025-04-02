@@ -13,6 +13,8 @@ export async function promptForIcons(choices: string[]): Promise<string[]> {
     const selectedIcons = await select({
       message: 'Select an icon:',
       options: async filter => {
+        filter = filter?.toLowerCase()?.trimStart()
+
         let filteredChoices = choices
 
         if (filter) {
@@ -24,6 +26,9 @@ export async function promptForIcons(choices: string[]): Promise<string[]> {
           value: icon,
         }))
       },
+      multiple: true,
+      clearInputWhenSelected: true,
+      required: true,
     })
 
     return selectedIcons
