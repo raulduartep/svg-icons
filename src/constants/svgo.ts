@@ -28,7 +28,13 @@ export const SVGO_CONFIG: Config = {
     },
     {
       name: 'removeAttrs',
-      params: { attrs: 'data.*' },
+      params: { attrs: ['data.*', 'class'] },
+    },
+    {
+      name: 'addAttributesToSVGElement',
+      params: {
+        attribute: { fill: 'currentColor', stroke: 'currentColor', 'stroke-width': '0', width: '24', height: '24' },
+      },
     },
   ],
 }
