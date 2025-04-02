@@ -7,7 +7,7 @@ import { promisify } from 'node:util'
 import ora from 'ora'
 
 import { TEMP_DIR } from './constants/general.js'
-import { ICON_SETS } from './constants/icon-set.js'
+import { SORTED_ICON_SETS } from './constants/icon-set.js'
 import { TIconSet } from './types.js'
 import { verifyIfPathExist } from './utils.js'
 
@@ -21,7 +21,7 @@ export async function promptForIconSet(): Promise<TIconSet> {
         name: 'value',
         message: 'Select a icon set:',
         loop: false,
-        choices: ICON_SETS.map(iconSet => [
+        choices: SORTED_ICON_SETS.map(iconSet => [
           {
             value: iconSet,
             name: iconSet.name,

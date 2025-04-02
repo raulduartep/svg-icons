@@ -534,3 +534,5 @@ export const ICON_SETS: TIconSet[] = [
     },
   },
 ]
+
+export const SORTED_ICON_SETS = ICON_SETS.sort((a, b) => a.name.localeCompare(b.name))

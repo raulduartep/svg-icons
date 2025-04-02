@@ -5,6 +5,7 @@ import path from 'node:path'
 import ora from 'ora'
 import svgo from 'svgo'
 
+import { SVGO_CONFIG } from './constants/svgo.js'
 import { TConfig, TIconSet } from './types.js'
 
 export async function promptForIcons(choices: string[]): Promise<string[]> {
@@ -37,7 +38,7 @@ export async function saveIcons(iconSet: TIconSet, config: TConfig, icons: [stri
   try {
     for (const [iconName, iconPath] of icons) {
       const rawSvg = await fs.readFile(iconPath, 'utf-8')
-      const optimizedSvg = svgo.optimize(rawSvg)
+      const optimizedSvg = svgo.optimize(rawSvg, SVGO_CONFIG)
 
       await fs.mkdir(config.dirPath, {
         recursive: true,
