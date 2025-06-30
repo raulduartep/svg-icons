@@ -14,7 +14,7 @@
     "cli"
   ],
   "type": "module",
-  "main": "dist/main.js",
+  "main": "dist/index.js",
   "files": [
     "dist"
   ],
@@ -26,8 +26,10 @@
     "build": "tsc"
   },
   "dependencies": {
+    "camelcase": "^8.0.0",
     "change-case": "^5.4.4",
     "fast-fuzzy": "^1.12.0",
+    "fast-glob": "^3.3.3",
     "find-up": "^7.0.0",
     "glob": "^11.0.0",
     "inquirer": "^12.3.0",

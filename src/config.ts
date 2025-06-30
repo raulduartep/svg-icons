@@ -23,6 +23,7 @@ export async function getConfig(): Promise<TConfig> {
   }
 
   return {
+    configDirPath: path.dirname(configPath),
     dirPath: path.join(path.dirname(configPath), parsedFile.dir),
   }
 }

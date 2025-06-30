@@ -1,44 +1,34 @@
 #!/usr/bin/env node
 
-import { getConfig } from './config.js'
-import { promptForIcons, saveIcons } from './icon.js'
-import { downloadIconSetFiles, generateIconSetManifest, promptForIconSet } from './icon-set.js'
-import { ensureTempDir, promptForSelectAgain } from './utils.js'
+import { generate } from './generate.js'
+import { migrate } from './migrate.js'
+import { unusedAssets } from './unused-assets.js'
 
-process.on('uncaughtException', error => {
-  console.error('\n' + error)
-  process.exit(1)
-})
+const [, , command, ...args] = process.argv
 
 async function main() {
-  await ensureTempDir()
+  if (!command) {
+    await generate()
+    return
+  }
 
-  const config = await getConfig()
+  if (command === 'migrate') {
+    await migrate()
+    return
+  }
 
-  let shouldExecAgain = false
-
-  do {
-    const iconSet = await promptForIconSet()
-
-    await downloadIconSetFiles(iconSet)
-
-    const iconSetManifestMap = await generateIconSetManifest(iconSet)
-
-    const iconNames = await promptForIcons(Array.from(iconSetManifestMap.keys()))
-
-    await saveIcons(
-      iconSet,
-      config,
-      iconNames.map(iconName => [iconName, iconSetManifestMap.get(iconName)!])
-    )
-
-    console.log('\n----------------------------------------\n')
-    shouldExecAgain = await promptForSelectAgain()
-
-    if (shouldExecAgain) {
-      console.log('\n----------------------------------------\n')
+  if (command === 'unused-assets') {
+    const assetDir = args[0]
+    if (!assetDir) {
+      console.error('Please provide the asset directory as an argument.')
+      process.exit(1)
     }
-  } while (shouldExecAgain)
+
+    await unusedAssets(assetDir)
+    return
+  }
+
+  console.error(`Unknown command: ${command}`)
 }
 
 main()

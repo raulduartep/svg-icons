@@ -1,4 +1,5 @@
 export type TConfig = {
+  configDirPath: string
   dirPath: string
 }
 
