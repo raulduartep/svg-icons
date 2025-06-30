@@ -1,7 +1,7 @@
 {
   "name": "@raulduartep/svg-icons",
   "description": "A lightweight CLI tool for downloading SVG icons, reducing bundle size by avoiding full icon set imports.",
-  "version": "1.0.4",
+  "version": "1.1.1",
   "author": "Raul Duarte Pereira (https://github.com/raulduartep)",
   "license": "MIT",
   "repository": {
