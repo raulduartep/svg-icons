@@ -26,7 +26,6 @@
     "build": "tsc"
   },
   "dependencies": {
-    "camelcase": "^8.0.0",
     "change-case": "^5.4.4",
     "fast-fuzzy": "^1.12.0",
     "fast-glob": "^3.3.3",

@@ -1,3 +1,5 @@
+import ora from 'ora'
+
 import { getConfig } from './config.js'
 import { promptForIcons, saveIcons } from './icon.js'
 import { downloadIconSetFiles, generateIconSetManifest, promptForIconSet } from './icon-set.js'
@@ -18,17 +20,42 @@ export async function generate() {
   do {
     const iconSet = await promptForIconSet()
 
-    await downloadIconSetFiles(iconSet)
+    const downloadSpinner = ora(`Downloading ${iconSet.name} set`).start()
+    try {
+      await downloadIconSetFiles(iconSet)
+      downloadSpinner.succeed()
+    } catch (error) {
+      downloadSpinner.fail()
+      console.error(error)
+      process.exit(1)
+    }
 
-    const iconSetManifestMap = await generateIconSetManifest(iconSet)
+    let iconSetManifestMap: Map<string, string>
+    const generateManifestSpinner = ora(`Generating ${iconSet.name} set manifest`).start()
+    try {
+      iconSetManifestMap = await generateIconSetManifest(iconSet)
+      generateManifestSpinner.succeed()
+    } catch (error) {
+      generateManifestSpinner.fail()
+      console.error(error)
+      process.exit(1)
+    }
 
     const iconNames = await promptForIcons(Array.from(iconSetManifestMap.keys()))
 
-    await saveIcons(
-      iconSet,
-      config,
-      iconNames.map(iconName => [iconName, iconSetManifestMap.get(iconName)!])
-    )
+    const saveSpinner = ora(`Saving icons`).start()
+    try {
+      await saveIcons(
+        iconSet,
+        config,
+        iconNames.map(iconName => [iconName, iconSetManifestMap.get(iconName)!])
+      )
+      saveSpinner.succeed()
+    } catch (error) {
+      saveSpinner.fail()
+      console.error(error)
+      process.exit(1)
+    }
 
     console.log('\n----------------------------------------\n')
     shouldExecAgain = await promptForSelectAgain()
