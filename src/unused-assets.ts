@@ -1,8 +1,9 @@
-import fg from 'fast-glob'
 import fs from 'fs'
 import inquirer from 'inquirer'
 import ora from 'ora'
 import path from 'path'
+
+import { glob } from './utils/helpers.js'
 
 const IGNORE_GLOB = ['**/node_modules/**', '**/dist/**', '**/.next/**']
 
@@ -22,7 +23,7 @@ export async function unusedAssets(assetDir: string) {
     const sourceDir = process.cwd()
     const dirname = path.join(process.cwd(), assetDir)
 
-    const assetFiles = await fg(`${dirname}/**/*`, { ignore: IGNORE_GLOB })
+    const assetFiles = await glob(`${dirname}/**/*`, { ignore: IGNORE_GLOB })
     const assetsMap = new Map<string, { file: string; baseName: string }>()
     assetFiles.forEach(file => {
       const baseName = getBaseName(file)
@@ -31,7 +32,7 @@ export async function unusedAssets(assetDir: string) {
       }
     })
 
-    const files = await fg(`${sourceDir}/**/*.{js,jsx,ts,tsx}`, { ignore: IGNORE_GLOB })
+    const files = await glob(`${sourceDir}/**/*.{js,jsx,ts,tsx}`, { ignore: IGNORE_GLOB })
 
     for (const file of files) {
       spinner.text = `Checking file: ${file}`

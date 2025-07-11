@@ -1,3 +1,4 @@
+import fg, { Options, Pattern } from 'fast-glob'
 import fs from 'fs/promises'
 import inquirer from 'inquirer'
 
@@ -32,4 +33,8 @@ export async function promptForSelectAgain(): Promise<boolean> {
   ])
 
   return selectedShouldExecAgain.value
+}
+
+export async function glob(pattern: Pattern, options?: Options) {
+  return await fg(pattern.replace(/\\/g, '/'), options)
 }

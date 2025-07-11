@@ -1,7 +1,7 @@
 import { kebabCase } from 'change-case'
-import fg from 'fast-glob'
 import path from 'node:path'
 
+import { glob } from '../utils/helpers.js'
 import { TIconSet } from '../utils/types.js'
 
 export const ICON_SETS: TIconSet[] = [
@@ -11,7 +11,7 @@ export const ICON_SETS: TIconSet[] = [
     projectUrl: 'https://circumicons.com/',
     resolvers: [
       {
-        files: dirPath => fg(path.join(dirPath, './*.svg')),
+        files: dirPath => glob(path.join(dirPath, './*.svg')),
         name: async name => name.replace(/_/g, '').replace(/&/g, '-and-'),
       },
     ],
@@ -28,11 +28,11 @@ export const ICON_SETS: TIconSet[] = [
     projectUrl: 'https://fontawesome.com/',
     resolvers: [
       {
-        files: dirPath => fg(path.join(dirPath, './+(brands|solid)/*.svg')),
+        files: dirPath => glob(path.join(dirPath, './+(brands|solid)/*.svg')),
         name: async name => name,
       },
       {
-        files: dirPath => fg(path.join(dirPath, './regular/*.svg')),
+        files: dirPath => glob(path.join(dirPath, './regular/*.svg')),
         name: async name => `regular-${name}`,
       },
     ],
@@ -49,11 +49,11 @@ export const ICON_SETS: TIconSet[] = [
     projectUrl: 'https://fontawesome.com/',
     resolvers: [
       {
-        files: dirPath => fg(path.join(dirPath, './+(brands|solid)/*.svg')),
+        files: dirPath => glob(path.join(dirPath, './+(brands|solid)/*.svg')),
         name: async name => name,
       },
       {
-        files: dirPath => fg(path.join(dirPath, './regular/*.svg')),
+        files: dirPath => glob(path.join(dirPath, './regular/*.svg')),
         name: async name => `regular-${name}`,
       },
     ],
@@ -70,7 +70,7 @@ export const ICON_SETS: TIconSet[] = [
     projectUrl: 'https://ionicons.com/',
     resolvers: [
       {
-        files: dirPath => fg(path.join(dirPath, './*.svg')),
+        files: dirPath => glob(path.join(dirPath, './*.svg')),
         name: async name => name,
       },
     ],
@@ -88,16 +88,16 @@ export const ICON_SETS: TIconSet[] = [
     resolvers: [
       {
         files: async dirPath => {
-          const normal = await fg(path.resolve(dirPath, './*/*/materialicons/24px.svg'))
+          const normal = await glob(path.resolve(dirPath, './*/*/materialicons/24px.svg'))
 
-          const twotone = await fg(path.resolve(dirPath, './*/*/materialiconstwotone/24px.svg'))
+          const twotone = await glob(path.resolve(dirPath, './*/*/materialiconstwotone/24px.svg'))
 
           return [...normal, ...twotone.filter(file => !normal.includes(file.replace('twotone/', '/')))]
         },
         name: async (_name, file) => `${kebabCase(file.replace(/^.*\/([^/]+)\/materialicons[^/]*\/24px.svg$/i, '$1'))}`,
       },
       {
-        files: async dirPath => await fg(path.resolve(dirPath, './*/*/materialiconsoutlined/24px.svg')),
+        files: async dirPath => await glob(path.resolve(dirPath, './*/*/materialiconsoutlined/24px.svg')),
         name: async (_name, file) =>
           `outline-${kebabCase(file.replace(/^.*\/([^/]+)\/materialicons[^/]*\/24px.svg$/i, '$1'))}`,
       },
@@ -115,7 +115,7 @@ export const ICON_SETS: TIconSet[] = [
     projectUrl: 'http://s-ings.com/typicons/',
     resolvers: [
       {
-        files: dirPath => fg(path.join(dirPath, './*.svg')),
+        files: dirPath => glob(path.join(dirPath, './*.svg')),
         name: async name => name,
       },
     ],
@@ -131,7 +131,7 @@ export const ICON_SETS: TIconSet[] = [
     name: 'Octicons icons',
     resolvers: [
       {
-        files: dirPath => fg(path.join(dirPath, './*-24.svg')),
+        files: dirPath => glob(path.join(dirPath, './*-24.svg')),
         name: async name => name.replace('24', ''),
       },
     ],
@@ -149,7 +149,7 @@ export const ICON_SETS: TIconSet[] = [
     projectUrl: 'https://feathericons.com/',
     resolvers: [
       {
-        files: dirPath => fg(path.join(dirPath, './*.svg')),
+        files: dirPath => glob(path.join(dirPath, './*.svg')),
         name: async name => name,
       },
     ],
@@ -165,7 +165,7 @@ export const ICON_SETS: TIconSet[] = [
     name: 'Lucide',
     resolvers: [
       {
-        files: dirPath => fg(path.join(dirPath, './*.svg')),
+        files: dirPath => glob(path.join(dirPath, './*.svg')),
         name: async name => name,
       },
     ],
@@ -182,7 +182,7 @@ export const ICON_SETS: TIconSet[] = [
     name: 'Weather Icons',
     resolvers: [
       {
-        files: dirPath => fg(path.join(dirPath, './*.svg')),
+        files: dirPath => glob(path.join(dirPath, './*.svg')),
         name: async name => name.replace(/^wi-/, ''),
       },
     ],
@@ -199,7 +199,7 @@ export const ICON_SETS: TIconSet[] = [
     name: 'Devicons',
     resolvers: [
       {
-        files: dirPath => fg(path.join(dirPath, './*.svg')),
+        files: dirPath => glob(path.join(dirPath, './*.svg')),
         name: async name => name,
       },
     ],
@@ -216,15 +216,15 @@ export const ICON_SETS: TIconSet[] = [
     name: 'Ant Design Icons',
     resolvers: [
       {
-        files: dirPath => fg(path.join(dirPath, './filled/*.svg')),
+        files: dirPath => glob(path.join(dirPath, './filled/*.svg')),
         name: async name => `fill-${name}`,
       },
       {
-        files: dirPath => fg(path.join(dirPath, './outlined/*.svg')),
+        files: dirPath => glob(path.join(dirPath, './outlined/*.svg')),
         name: async name => `outline-${name}`,
       },
       {
-        files: dirPath => fg(path.join(dirPath, './twotone/*.svg')),
+        files: dirPath => glob(path.join(dirPath, './twotone/*.svg')),
         name: async name => `twotone-${name}`,
       },
     ],
@@ -241,15 +241,15 @@ export const ICON_SETS: TIconSet[] = [
     name: 'Bootstrap Icons',
     resolvers: [
       {
-        files: dirPath => fg(path.join(dirPath, './*!(-reverse)-fill.svg')),
+        files: dirPath => glob(path.join(dirPath, './*!(-reverse)-fill.svg')),
         name: async name => `fill-${name}`,
       },
       {
-        files: dirPath => fg(path.join(dirPath, './*-reverse!(-fill).svg')),
+        files: dirPath => glob(path.join(dirPath, './*-reverse!(-fill).svg')),
         name: async name => `reverse-${name}`,
       },
       {
-        files: dirPath => fg(path.join(dirPath, './*!(-fill|-reverse|reverse-).svg')),
+        files: dirPath => glob(path.join(dirPath, './*!(-fill|-reverse|reverse-).svg')),
         name: async name => name,
       },
     ],
@@ -266,7 +266,7 @@ export const ICON_SETS: TIconSet[] = [
     name: 'Remix Icon',
     resolvers: [
       {
-        files: dirPath => fg(path.join(dirPath, './*/*.svg')),
+        files: dirPath => glob(path.join(dirPath, './*/*.svg')),
         name: async name => name,
       },
     ],
@@ -283,7 +283,7 @@ export const ICON_SETS: TIconSet[] = [
     name: 'Flat Color Icons',
     resolvers: [
       {
-        files: dirPath => fg(path.join(dirPath, './*.svg')),
+        files: dirPath => glob(path.join(dirPath, './*.svg')),
         name: async name => name,
       },
     ],
@@ -300,7 +300,7 @@ export const ICON_SETS: TIconSet[] = [
     name: 'Grommet-Icons',
     resolvers: [
       {
-        files: dirPath => fg(path.join(dirPath, './*.svg')),
+        files: dirPath => glob(path.join(dirPath, './*.svg')),
         name: async name => name,
       },
     ],
@@ -317,11 +317,11 @@ export const ICON_SETS: TIconSet[] = [
     name: 'Heroicons',
     resolvers: [
       {
-        files: dirPath => fg(path.join(dirPath, './24/solid/*.svg')),
+        files: dirPath => glob(path.join(dirPath, './24/solid/*.svg')),
         name: async name => name,
       },
       {
-        files: dirPath => fg(path.join(dirPath, './24/outline/*.svg')),
+        files: dirPath => glob(path.join(dirPath, './24/outline/*.svg')),
         name: async name => `outline-${name}`,
       },
     ],
@@ -338,7 +338,7 @@ export const ICON_SETS: TIconSet[] = [
     name: 'Simple Icons',
     resolvers: [
       {
-        files: dirPath => fg(path.join(dirPath, './*.svg')),
+        files: dirPath => glob(path.join(dirPath, './*.svg')),
         name: async name => name,
       },
     ],
@@ -355,7 +355,7 @@ export const ICON_SETS: TIconSet[] = [
     name: 'Simple Line Icons',
     resolvers: [
       {
-        files: dirPath => fg(path.join(dirPath, './*.svg')),
+        files: dirPath => glob(path.join(dirPath, './*.svg')),
         name: async name => name,
       },
     ],
@@ -373,7 +373,7 @@ export const ICON_SETS: TIconSet[] = [
     name: 'IcoMoon Free',
     resolvers: [
       {
-        files: dirPath => fg(path.join(dirPath, './*.svg')),
+        files: dirPath => glob(path.join(dirPath, './*.svg')),
         name: async name => name.slice(3),
       },
     ],
@@ -390,15 +390,15 @@ export const ICON_SETS: TIconSet[] = [
     name: 'BoxIcons',
     resolvers: [
       {
-        files: dirPath => fg(path.join(dirPath, './regular/*.svg')),
+        files: dirPath => glob(path.join(dirPath, './regular/*.svg')),
         name: async name => name.replace('Bx', ''),
       },
       {
-        files: dirPath => fg(path.join(dirPath, './solid/*.svg')),
+        files: dirPath => glob(path.join(dirPath, './solid/*.svg')),
         name: async name => `solid-${name.replace('Bxs', '')}`,
       },
       {
-        files: dirPath => fg(path.join(dirPath, './logos/*.svg')),
+        files: dirPath => glob(path.join(dirPath, './logos/*.svg')),
         name: async name => `logo-${name.replace('Bxl', '')}`,
       },
     ],
@@ -415,7 +415,7 @@ export const ICON_SETS: TIconSet[] = [
     name: 'css.gg',
     resolvers: [
       {
-        files: dirPath => fg(path.join(dirPath, './*.svg')),
+        files: dirPath => glob(path.join(dirPath, './*.svg')),
         name: async name => name,
       },
     ],
@@ -432,7 +432,7 @@ export const ICON_SETS: TIconSet[] = [
     name: 'VS Code Icons',
     resolvers: [
       {
-        files: dirPath => fg(path.join(dirPath, './*.svg')),
+        files: dirPath => glob(path.join(dirPath, './*.svg')),
         name: async name => name,
       },
     ],
@@ -449,11 +449,11 @@ export const ICON_SETS: TIconSet[] = [
     name: 'Tabler Icons',
     resolvers: [
       {
-        files: dirPath => fg(path.join(dirPath, './filled/*.svg')),
+        files: dirPath => glob(path.join(dirPath, './filled/*.svg')),
         name: async name => `filled-${name}`,
       },
       {
-        files: dirPath => fg(path.join(dirPath, './outline/*.svg')),
+        files: dirPath => glob(path.join(dirPath, './outline/*.svg')),
         name: async name => name,
       },
     ],
@@ -470,7 +470,7 @@ export const ICON_SETS: TIconSet[] = [
     name: 'Themify Icons',
     resolvers: [
       {
-        files: dirPath => fg(path.join(dirPath, './*.svg')),
+        files: dirPath => glob(path.join(dirPath, './*.svg')),
         name: async name => name,
       },
     ],
@@ -487,7 +487,7 @@ export const ICON_SETS: TIconSet[] = [
     name: 'Radix Icons',
     resolvers: [
       {
-        files: dirPath => fg(path.join(dirPath, './*.svg')),
+        files: dirPath => glob(path.join(dirPath, './*.svg')),
         name: async name => name,
       },
     ],
@@ -504,7 +504,7 @@ export const ICON_SETS: TIconSet[] = [
     name: 'Phosphor Icons',
     resolvers: [
       {
-        files: dirPath => fg(path.join(dirPath, './*/*.svg')),
+        files: dirPath => glob(path.join(dirPath, './*/*.svg')),
         name: async name => name,
       },
     ],
@@ -521,7 +521,7 @@ export const ICON_SETS: TIconSet[] = [
     name: 'Icons8 Line Awesome',
     resolvers: [
       {
-        files: dirPath => fg(path.join(dirPath, './*.svg')),
+        files: dirPath => glob(path.join(dirPath, './*.svg')),
         name: async name => name,
       },
     ],

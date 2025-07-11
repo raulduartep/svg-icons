@@ -1,5 +1,4 @@
 import { kebabCase } from 'change-case'
-import fg from 'fast-glob'
 import { findUp } from 'find-up'
 import fs from 'fs'
 import ora from 'ora'
@@ -7,6 +6,7 @@ import path from 'path'
 
 import { ICON_SETS } from './constants/icon-set.js'
 import { getConfig } from './utils/config.js'
+import { glob } from './utils/helpers.js'
 import { saveIcons } from './utils/icon.js'
 import { downloadIconSetFiles, generateIconSetManifest } from './utils/icon-set.js'
 
@@ -95,7 +95,7 @@ export async function migrate() {
 
   const icons = new Set()
 
-  const files = await fg(`${config.configDirPath}/**/*.{ts,js,tsx,jsx}`, { ignore: IGNORE_GLOB })
+  const files = await glob(`${config.configDirPath}/**/*.{ts,js,tsx,jsx}`, { ignore: IGNORE_GLOB })
   for (const file of files) {
     try {
       spinner.text = `Checking file: ${file}`
