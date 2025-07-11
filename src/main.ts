@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { clearCache } from './clear-cache.js'
 import { generate } from './generate.js'
 import { migrate } from './migrate.js'
 import { unusedAssets } from './unused-assets.js'
@@ -25,6 +26,11 @@ async function main() {
     }
 
     await unusedAssets(assetDir)
+    return
+  }
+
+  if (command === 'clear-cache') {
+    await clearCache()
     return
   }
 

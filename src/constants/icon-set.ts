@@ -2,7 +2,7 @@ import { kebabCase } from 'change-case'
 import fg from 'fast-glob'
 import path from 'node:path'
 
-import { TIconSet } from '../types.js'
+import { TIconSet } from '../utils/types.js'
 
 export const ICON_SETS: TIconSet[] = [
   {

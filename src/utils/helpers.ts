@@ -1,7 +1,7 @@
 import fs from 'fs/promises'
 import inquirer from 'inquirer'
 
-import { TEMP_DIR } from './constants/general.js'
+import { TEMP_DIR } from '../constants/general.js'
 
 export function sleep(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms))

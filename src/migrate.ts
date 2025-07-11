@@ -6,9 +6,9 @@ import ora from 'ora'
 import path from 'path'
 
 import { ICON_SETS } from './constants/icon-set.js'
-import { getConfig } from './config.js'
-import { saveIcons } from './icon.js'
-import { downloadIconSetFiles, generateIconSetManifest } from './icon-set.js'
+import { getConfig } from './utils/config.js'
+import { saveIcons } from './utils/icon.js'
+import { downloadIconSetFiles, generateIconSetManifest } from './utils/icon-set.js'
 
 const IGNORE_GLOB = ['**/node_modules/**', '**/dist/**', '**/.next/**']
 

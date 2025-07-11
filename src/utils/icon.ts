@@ -4,7 +4,8 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 import svgo from 'svgo'
 
-import { SVGO_CONFIG } from './constants/svgo.js'
+import { SVGO_CONFIG } from '../constants/svgo.js'
+
 import { TConfig, TIconSet } from './types.js'
 
 export async function promptForIcons(choices: string[]): Promise<string[]> {

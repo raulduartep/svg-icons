@@ -5,10 +5,11 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 import { promisify } from 'node:util'
 
-import { TEMP_DIR } from './constants/general.js'
-import { SORTED_ICON_SETS } from './constants/icon-set.js'
+import { TEMP_DIR } from '../constants/general.js'
+import { SORTED_ICON_SETS } from '../constants/icon-set.js'
+
+import { verifyIfPathExist } from './helpers.js'
 import { TIconSet } from './types.js'
-import { verifyIfPathExist } from './utils.js'
 
 const execFileAsync = promisify(execFile)
 

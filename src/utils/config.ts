@@ -2,7 +2,8 @@ import { findUp } from 'find-up'
 import fs from 'node:fs'
 import path from 'node:path'
 
-import { CONFIG_FILE_NAME } from './constants/general.js'
+import { CONFIG_FILE_NAME } from '../constants/general.js'
+
 import { TConfig } from './types.js'
 
 export async function getConfig(): Promise<TConfig> {

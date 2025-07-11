@@ -1,9 +1,9 @@
 import ora from 'ora'
 
-import { getConfig } from './config.js'
-import { promptForIcons, saveIcons } from './icon.js'
-import { downloadIconSetFiles, generateIconSetManifest, promptForIconSet } from './icon-set.js'
-import { ensureTempDir, promptForSelectAgain } from './utils.js'
+import { getConfig } from './utils/config.js'
+import { ensureTempDir, promptForSelectAgain } from './utils/helpers.js'
+import { promptForIcons, saveIcons } from './utils/icon.js'
+import { downloadIconSetFiles, generateIconSetManifest, promptForIconSet } from './utils/icon-set.js'
 
 process.on('uncaughtException', error => {
   console.error('\n' + error)
