@@ -22,25 +22,28 @@
     "svg-icons": "dist/main.js"
   },
   "scripts": {
-    "dev": "tsx src/main.ts",
+    "dev": "tsx src/main.tsx",
     "build": "tsc"
   },
   "dependencies": {
+    "@inkjs/ui": "^2.0.0",
     "change-case": "^5.4.4",
+    "cli-spinners": "^3.2.0",
     "fast-fuzzy": "^1.12.0",
     "fast-glob": "^3.3.3",
+    "figures": "^6.1.0",
     "find-up": "^7.0.0",
-    "glob": "^11.0.0",
-    "inquirer": "^12.3.0",
-    "inquirer-select-pro": "^1.0.0-alpha.9",
-    "ora": "^8.1.1",
-    "svgo": "^3.3.2",
-    "tsx": "^4.19.2"
+    "image-to-ascii": "^3.2.2",
+    "ink": "^6.0.1",
+    "open": "^10.2.0",
+    "react": "^19.1.0",
+    "sharp": "^0.34.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
     "@tsconfig/node20": "^20.1.4",
     "@types/progress": "^2.0.7",
+    "@types/react": "^19.1.8",
     "eslint": "^9.17.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
@@ -48,6 +51,8 @@
     "globals": "^15.14.0",
     "prettier": "^3.4.2",
     "typescript": "^5.7.2",
-    "typescript-eslint": "^8.18.2"
+    "typescript-eslint": "^8.18.2",
+    "svgo": "^3.3.2",
+    "tsx": "^4.19.2"
   }
 }

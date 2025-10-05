@@ -24,3 +24,7 @@ export type TIconSet = {
   resolvers: TIconSetResolver[]
   source: TIconSetSource
 }
+
+export type TIconSetManifest = Map<string, string>
+
+export type TAllAssets = Map<string, { file: string; baseName: string }>

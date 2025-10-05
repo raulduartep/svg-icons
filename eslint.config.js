@@ -16,6 +16,7 @@ export default [
       'simple-import-sort': simpleImportSort,
     },
     rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
       'simple-import-sort/imports': [
         'error',
         {
